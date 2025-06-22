@@ -18,13 +18,11 @@ jobs:
       - name: Make Dummy Change (23f2005339@ds.study.iitm.ac.in)
         run: |
           echo "Last updated: $(date -u)" > .daily-update.txt
-          cat .daily-update.txt
 
       - name: Commit and Push
         run: |
           git config --global user.name "DevSync Bot"
           git config --global user.email "23f2005339@ds.study.iitm.ac.in"
           git add .daily-update.txt
-          git status
           git commit -m "Daily update: $(date -u)" || echo "Nothing to commit"
           git push
