@@ -1,0 +1,25 @@
+name: Daily Commit
+
+on:
+  schedule:
+    - cron: '30 7 * * *' 
+  workflow_dispatch: 
+
+jobs:
+  auto-commit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Make Dummy Change (23f2005339@ds.study.iitm.ac.in)
+        run: |
+          echo "Last updated: $(date -u)" > .daily-update.txt
+
+      - name: Commit and Push Changes
+        run: |
+          git config --global user.name "DevSync Bot"
+          git config --global user.email "23f2005339@ds.study.iitm.ac.in"
+          git add .daily-update.txt
+          git commit -m "Automated daily update - $(date -u)" || echo "No changes to commit"
+          git push
