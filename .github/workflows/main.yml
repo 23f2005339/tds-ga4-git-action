@@ -25,4 +25,4 @@ jobs:
           git config --global user.email "23f2005339@ds.study.iitm.ac.in"
           git add .daily-update.txt
           git commit -m "Daily update: $(date -u)" || echo "Nothing to commit"
-          git push
+          git pushs
